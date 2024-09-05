@@ -1,6 +1,7 @@
 name: Build Tutorial Manager Backend Image
 run-name: ${{ github.actor }} is Building tutorialmanager-be image 🚀
 on:
+  workflow_dispatch: 
   push:
     paths:
     - frontend
