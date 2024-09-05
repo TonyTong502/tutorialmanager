@@ -12,7 +12,7 @@
 	<artifactId>tutorialmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tutorial Manager</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Tutorial Manager</description>
 	<url/>
 	<licenses>
 		<license/>
