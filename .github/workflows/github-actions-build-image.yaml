@@ -4,8 +4,8 @@ on:
   #workflow_dispatch: {}
   push:
     paths:
-    - './frontend/**'
-    - './backend/**'
+    - 'frontend/**'
+    - 'backend/**'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
