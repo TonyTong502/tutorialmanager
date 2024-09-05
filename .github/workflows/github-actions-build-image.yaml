@@ -29,11 +29,9 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       #################
       - run: npm install -g pnpm
-      - run: pushd frontend
-      - run: pnpm install
-      - run: pnpm install dev 
-      - run: pnpm run build
-      - run: popd
+      - run: pnpm install --dir frontend
+      - run: pnpm install dev --dir frontend
+      - run: pnpm run build --dir frontend
       - run: mvn -f backend/pom.xml -DskipTests clean package
       - run: cp -r frontend/dist backend/target/
       #################
