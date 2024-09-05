@@ -30,7 +30,10 @@ jobs:
       #################
       - run: mvn -f backend/pom.xml -DskipTests clean package
       - run: npm install -g pnpm
-      - run: pushd frontend && pnpm run build; popd
+      - run: pushd frontend
+      - run: pnpm install dev && pnpm install
+      - run: pnpm run build
+      - run: popd
       - run: cp -r frontend/dist backend/target/
       #################
       - name: List files in the repository
