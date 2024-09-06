@@ -6,9 +6,9 @@ on:
     - 'frontend/**'
     - 'backend/**'
   workflow_dispatch: {}
-  
+
 jobs:
-  Explore-GitHub-Actions:
+  Build-Tutorial-Manager:
     runs-on: ubuntu-latest
     steps:
       #################
