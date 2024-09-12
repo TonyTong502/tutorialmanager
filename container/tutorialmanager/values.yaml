@@ -2,9 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# TODO: Backend application-prod.yaml config
+# Backend application-prod.yaml config
 appBackend:
   jvmOptions: '-Xmx800M'
+  mysqlUser: "root"
+  mysqlPassword: "ToBeChanged"
+  redisPassword: "ToBeChanged"
   config:
     lab2:
       tutorial-manager:
@@ -19,19 +22,19 @@ appBackend:
       datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://mysql:3306/tm?allowPublicKeyRetrieval=true
-        username: root
-        password: jb3o8F4GUY
+        username: ${MYSQL_USER:root}
+        password: ${MYSQL_PASSWORD}
       data:
         redis:
           host: redis-master
           port: 6379
-          password: rAJs4VMFJo
+          password: ${REDIS_PASSWORD}
       jpa:
         properties:
           hibernate.dialect: org.hibernate.dialect.MySQLDialect
   
 replicaCount: 1
-# TODO Image
+# Image
 image:
   repository: lab2acr4bow.azurecr.io/lab2/tutorial-manager-be
   pullPolicy: Always

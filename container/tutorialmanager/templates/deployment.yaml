@@ -52,6 +52,12 @@ spec:
               value: {{ .Values.appBackend.jvmOptions }}
             - name: SPRING_PROFILES_ACTIVE
               value: prod,default
+            - name: MYSQL_USER
+              value: {{ .Values.appBackend.mysqlUser }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.appBackend.mysqlPassword }}
+            - name: REDIS_PASSWORD
+              value: {{ .Values.appBackend.redisPassword }}
           volumeMounts:
             - name: app-config
               mountPath: /home/app/config/application-prod.yml
