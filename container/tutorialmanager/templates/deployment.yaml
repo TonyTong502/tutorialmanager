@@ -50,8 +50,8 @@ spec:
           env:
             - name: JVM_OPTS
               value: {{ .Values.appBackend.jvmOptions }}
-            - name: SPRING_PROFILES_ACTIVE
-              value: prod,default
+            # - name: SPRING_PROFILES_ACTIVE
+            #   value: prod,default
             - name: MYSQL_USER
               value: {{ .Values.appBackend.mysqlUser }}
             - name: MYSQL_PASSWORD

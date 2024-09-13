@@ -19,6 +19,8 @@ appBackend:
         infra-cache:
           provider: redis
     spring:
+      profiles:
+        active: prod,default
       datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://mysql:3306/tm?allowPublicKeyRetrieval=true
