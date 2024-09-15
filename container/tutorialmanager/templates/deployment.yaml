@@ -54,18 +54,43 @@ spec:
             #   value: prod,default
             - name: MYSQL_USER
               value: {{ .Values.appBackend.mysqlUser }}
-            - name: MYSQL_PASSWORD
-              value: {{ .Values.appBackend.mysqlPassword }}
-            - name: REDIS_PASSWORD
-              value: {{ .Values.appBackend.redisPassword }}
+          command: 
+            - /bin/sh
+            - -c
+            - |
+              #!/bin/sh
+              {{- if .Values.appBackend.azureKeyVault.enabled }}
+              export MYSQL_PASSWORD="$(cat /home/app/secrets/{{ .Values.appBackend.mysqlPassword }})"
+              export REDIS_PASSWORD="$(cat /home/app/secrets/{{ .Values.appBackend.redisPassword }})"
+              {{- else }}
+              export MYSQL_PASSWORD="{{ .Values.appBackend.mysqlPassword }}"
+              export REDIS_PASSWORD="{{ .Values.appBackend.redisPassword }}"
+              {{- end }}
+              echo "Java Options: $JVM_OPTS "
+              java $JVM_OPTS org.springframework.boot.loader.launch.JarLauncher
+
           volumeMounts:
             - name: app-config
               mountPath: /home/app/config/application-prod.yml
               subPath: application-prod.yml
+            {{- if .Values.appBackend.azureKeyVault.enabled }}
+            - name: azure-vault-secrets
+              mountPath: "/home/app/secrets"
+              readOnly: true
+
+            {{- end }}
       volumes:
         - name: app-config
           configMap:
             name: {{ include "tutorialmanager.fullname" . }}-configmap
+        {{- if .Values.appBackend.azureKeyVault.enabled }}
+        - name: azure-vault-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ include "tutorialmanager.fullname" . }}        
+        {{- end }}
 
       {{- with .Values.nodeSelector }}
       nodeSelector:

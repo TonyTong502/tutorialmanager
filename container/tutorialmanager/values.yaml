@@ -8,6 +8,8 @@ appBackend:
   mysqlUser: "root"
   mysqlPassword: "ToBeChanged"
   redisPassword: "ToBeChanged"
+  azureKeyVault:
+    enabled: false
   config:
     lab2:
       tutorial-manager:
