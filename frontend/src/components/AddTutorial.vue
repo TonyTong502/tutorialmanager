@@ -12,6 +12,17 @@
           name="title"
         />
       </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          class="form-control"
+          id="author"
+          required
+          v-model="tutorial.author"
+          name="author"
+        />
+      </div>
 
       <div class="form-group">
         <label for="description">Description</label>
@@ -60,6 +71,7 @@ export default {
     saveTutorial() {
       var data = {
         title: this.tutorial.title,
+        author: this.tutorial.author,
         description: this.tutorial.description
       };
 

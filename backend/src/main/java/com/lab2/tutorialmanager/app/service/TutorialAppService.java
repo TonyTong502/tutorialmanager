@@ -44,14 +44,14 @@ public class TutorialAppService {
     return dtoAssembler.entityToDto(entity);
   }
 
-  public TutorialDTO createTutorial(String title, String description) {
-    Tutorial entity=managerService.createTutorial(title,description);
+  public TutorialDTO createTutorial(String title, String author, String description) {
+    Tutorial entity=managerService.createTutorial(title, author,description);
     return dtoAssembler.entityToDto(entity);
   }
 
-  public TutorialDTO updateTutorial(Long id, String title, String description,
+  public TutorialDTO updateTutorial(Long id, String title, String author, String description,
       boolean published) {
-    Tutorial entity=managerService.updateTutorial(id,title,description);
+    Tutorial entity=managerService.updateTutorial(id,title, author,description);
     if(published && !entity.isPublished()) {
       entity=managerService.publishTutorial(id);
       log.warn("AppService>>> Published tutorial '{}', send event to downstream system!!!",id);

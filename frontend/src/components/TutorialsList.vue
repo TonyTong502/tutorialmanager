@@ -33,6 +33,9 @@
           <label><strong>Title:</strong></label> {{ currentTutorial.title }}
         </div>
         <div>
+          <label><strong>author:</strong></label> {{ currentTutorial.author }}
+        </div>
+        <div>
           <label><strong>Description:</strong></label> {{ currentTutorial.description }}
         </div>
         <div>

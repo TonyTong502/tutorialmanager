@@ -21,6 +21,8 @@ public class TutorialDTO {
   private Long id;
   @Schema(title = "Title")
   private String title;
+  @Schema(title = "Author")
+  private String author;
   @Schema(title = "ContentDescription")
   private String description;
   @Schema(title = "Published")

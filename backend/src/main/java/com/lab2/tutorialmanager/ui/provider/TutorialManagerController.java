@@ -76,7 +76,7 @@ public class TutorialManagerController {
   public ResultDTO<TutorialDTO> createTutorial(@RequestBody TutorialDTO input) {
     long beginTimeMs = System.currentTimeMillis();
     try {
-      TutorialDTO output = appService.createTutorial(input.getTitle(), input.getDescription());
+      TutorialDTO output = appService.createTutorial(input.getTitle(), input.getAuthor(), input.getDescription());
       return ResultDTO.ok(HttpStatus.CREATED, output, beginTimeMs);
     } catch (Throwable e) {
       return ResultDTO.fail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e, beginTimeMs);
@@ -88,7 +88,7 @@ public class TutorialManagerController {
       @RequestBody TutorialDTO input) {
     long beginTimeMs = System.currentTimeMillis();
     try {
-      TutorialDTO output = appService.updateTutorial(id, input.getTitle(), input.getDescription(),
+      TutorialDTO output = appService.updateTutorial(id, input.getTitle(), input.getAuthor(), input.getDescription(),
           input.isPublished());
       if (output == null) {
         return ResultDTO.fail(HttpStatus.NO_CONTENT, "Cannot find tutorials by id:" + id,

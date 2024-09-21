@@ -76,14 +76,14 @@ public class ManagerService {
     return e;
   }
 
-  public Tutorial createTutorial(String title, String description) {
+  public Tutorial createTutorial(String title, String author, String description) {
     if (checkBlackWord(title)) {
       throw new IllegalArgumentException("Found black list word(s) in title: " + title);
     }
     if (checkBlackWord(description)) {
       throw new IllegalArgumentException("Found black list word(s) in description: " + description);
     }
-    Tutorial e = Tutorial.builder().title(title).description(description).build();
+    Tutorial e = Tutorial.builder().title(title).author(author).description(description).build();
     long id = repoPersistence.createTutorial(e);
     e = repoPersistence.findTutorialById(id);
     cacheService.put(id, e, config.getCacheExpirationSec());
@@ -93,7 +93,7 @@ public class ManagerService {
     return e;
   }
 
-  public Tutorial updateTutorial(Long id, String title, String description) {
+  public Tutorial updateTutorial(Long id, String title, String author, String description) {
     if (checkBlackWord(title)) {
       throw new IllegalArgumentException("Found black list word(s) in title: " + title);
     }
@@ -107,6 +107,9 @@ public class ManagerService {
     }
     if (title != null) {
       e.setTitle(title);
+    }
+    if (author != null){
+      e.setAuthor(author);
     }
     if (description != null) {
       e.setDescription(description);

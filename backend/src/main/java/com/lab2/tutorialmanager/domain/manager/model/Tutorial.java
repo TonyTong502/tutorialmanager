@@ -28,6 +28,8 @@ public class Tutorial {
   @Setter
   private String title;
   @Setter
+  private String author;
+  @Setter
   private String description;
   private boolean published;
   private Date createTime;

@@ -7,6 +7,10 @@
         <input type="text" class="form-control" id="title" v-model="currentTutorial.title" />
       </div>
       <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" id="author" v-model="currentTutorial.author" />
+      </div>
+      <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" v-model="currentTutorial.description" />
       </div>
@@ -83,6 +87,7 @@ export default {
       var data = {
         id: this.currentTutorial.id,
         title: this.currentTutorial.title,
+        author: this.currentTutorial.author,
         description: this.currentTutorial.description,
         published: status
       };
